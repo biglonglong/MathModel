@@ -1,0 +1,13 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label="SiO2 <= 57.11\nentropy = 0.88\nsamples = 39\nvalue = [42, 18]\nclass = lead barium", fillcolor="#f0b78e"] ;
+1 [label="entropy = 0.0\nsamples = 20\nvalue = [30, 0]\nclass = lead barium", fillcolor="#e58139"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="PbO <= 7.61\nentropy = 0.97\nsamples = 19\nvalue = [12, 18]\nclass = high potassium", fillcolor="#bddef6"] ;
+0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+3 [label="entropy = 0.0\nsamples = 12\nvalue = [0, 18]\nclass = high potassium", fillcolor="#399de5"] ;
+2 -> 3 ;
+4 [label="entropy = 0.0\nsamples = 7\nvalue = [12, 0]\nclass = lead barium", fillcolor="#e58139"] ;
+2 -> 4 ;
+}

@@ -1,0 +1,297 @@
+---
+title: "Untitled"
+author: "202018070205 卢小雨"
+date: "2022-09-15"
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+#问题二
+getwd()
+setwd("C:\\Users\\HUAWEI\\Desktop")
+bd2<-read.csv("附件 表单22.csv",encoding = "UTF-8")
+names(bd2)<-c("文物采样点","文物类型","纹饰","是否风化","二氧化硅","氧化钠","氧化钾","氧化钙","氧化镁","氧化铝","氧化铁","氧化铜","氧化铅","氧化钡","五氧化二磷","氧化锶","氧化锡","二氧化硫")
+library(ggplot2)
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=二氧化硅,color=文物类型,shape=纹饰))
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=氧化钠,color=文物类型,shape=纹饰))
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=氧化钾,color=文物类型,shape=纹饰))
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=氧化钙,color=文物类型,shape=纹饰))
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=氧化镁,color=文物类型,shape=纹饰))
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=氧化铝,color=文物类型,shape=纹饰))
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=氧化铁,color=文物类型,shape=纹饰))
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=氧化铜,color=文物类型,shape=纹饰))
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=氧化铅,color=文物类型,shape=纹饰))
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=氧化钡,color=文物类型,shape=纹饰))
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=五氧化二磷,color=文物类型,shape=纹饰))
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=氧化锶,color=文物类型,shape=纹饰))
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=氧化锡,color=文物类型,shape=纹饰))
+ggplot(data=bd2)+geom_point(mapping=aes(x=是否风化,y=二氧化硫,color=文物类型,shape=纹饰))
+getwd()
+setwd("C:\\Users\\HUAWEI\\Desktop")
+gj2<-read.csv("第四问高钾数据.csv",encoding = "UTF-8")
+names(gj2)<-c("文物采样点","是否风化","二氧化硅","氧化钠","氧化钾","氧化钙","氧化镁","氧化铝","氧化铁","氧化铜","氧化铅","氧化钡","五氧化二磷","氧化锶","氧化锡","二氧化硫")
+summary(gj2[1:6,])
+summary(gj2[7:18,])
+c<-c()
+for(i in 5:18){
+  m<-sd(gj2[1:6,i])
+  n<-sd(gj2[7:18,i])
+  c<-c(c,m,n)
+}
+c
+getwd()
+setwd("C:\\Users\\HUAWEI\\Desktop")
+gj2<-read.csv("第四问铅钡数据.csv",encoding = "UTF-8")
+names(gj2)<-c("文物采样点","是否风化","二氧化硅","氧化钠","氧化钾","氧化钙","氧化镁","氧化铝","氧化铁","氧化铜","氧化铅","氧化钡","五氧化二磷","氧化锶","氧化锡","二氧化硫")
+summary(gj2[1:6,])
+summary(gj2[7:18,])
+c<-c()
+for(i in 5:18){
+  m<-sd(gj2[1:6,i])
+  n<-sd(gj2[7:18,i])
+  c<-c(c,m,n)
+}
+c
+
+```
+
+```{r cars}
+getwd()
+setwd("C:\\Users\\HUAWEI\\Desktop") #可以掉换成任何你存放文件的路径
+library(openxlsx)
+a<-read.xlsx("附件.xlsx","表单1")#读取文件中数据,这里x，y可以被替换
+a
+fh<-as.vector(unlist(a$表面风化))  #转化为向量
+ws<-as.vector(unlist(a$纹饰))#转化为向量
+lx<-as.vector(unlist(a$类型))#转化为向量
+ys<-as.vector(unlist(a$颜色))#转化为向量
+table(a$纹饰,a$表面风化)
+table(a$类型,a$表面风化)
+table(a$颜色,a$表面风化)
+table(a$纹饰,a$表面风化)/54
+table(a$类型,a$表面风化)/54
+table(a$颜色,a$表面风化)/54
+#Fisher精确检验
+fisher.test(fh,lx)
+fisher.test(fh,ys)
+fisher.test(fh,ws)
+#卡方检验
+chisq.test(fh,lx)
+chisq.test(fh,ys)
+chisq.test(fh,ws)
+summary(cars)
+```
+
+```{r}
+getwd()
+setwd("C:\\Users\\HUAWEI\\Desktop")
+gj<-read.csv("第四问高钾数据.csv",encoding = "UTF-8")
+#分析高钾数据是否符合正态性检验
+shapiro.test(gj$二氧化硅.SiO2.)
+shapiro.test(gj$氧化钠.Na2O.)
+shapiro.test(gj$氧化钾.K2O.)
+shapiro.test(gj$氧化钙.CaO.)
+shapiro.test(gj$氧化镁.MgO.)
+shapiro.test(gj$氧化铝.Al2O3.)
+shapiro.test(gj$氧化铁.Fe2O3.)
+shapiro.test(gj$氧化铜.CuO.)
+shapiro.test(gj$氧化铅.PbO.)
+shapiro.test(gj$氧化钡.BaO.)
+shapiro.test(gj$五氧化二磷.P2O5.)
+shapiro.test(gj$氧化锶.SrO.)
+shapiro.test(gj$氧化锡.SnO2.)
+shapiro.test(gj$二氧化硫.SO2.)
+#分析铅钡数据化学元素是否服从
+qb<-read.csv("第四问铅钡数据.csv",encoding = "UTF-8")
+shapiro.test(qb$二氧化硅.SiO2.)
+shapiro.test(qb$氧化钠.Na2O.)
+shapiro.test(qb$氧化钾.K2O.)
+shapiro.test(qb$氧化钙.CaO.)
+shapiro.test(qb$氧化镁.MgO.)
+shapiro.test(qb$氧化铝.Al2O3.)
+shapiro.test(qb$氧化铁.Fe2O3.)
+shapiro.test(qb$氧化铜.CuO.)
+shapiro.test(qb$氧化铅.PbO.)
+shapiro.test(qb$氧化钡.BaO.)
+shapiro.test(qb$五氧化二磷.P2O5.)
+shapiro.test(qb$氧化锶.SrO.)
+shapiro.test(qb$氧化锡.SnO2.)
+shapiro.test(qb$二氧化硫.SO2.)
+#不服从正态分布假设
+```
+
+## Including Plots
+```{r}
+library(corrplot)
+getwd()
+setwd("C:\\Users\\HUAWEI\\Desktop")
+a<-read.csv("附件 表单2.csv",encoding = "UTF-8")
+x<-a[1:69,3:17]
+y<-a[1:69,2]
+plot(x,pch=20,col="red")
+corrplot(cor(x),method="square",title="各个指标之间的相关性分析",order="AOE",addCoef.col="black")
+library(glmnet)
+set.seed(205)
+select<-sample(1:nrow(a),length(a$X.U.FEFF.文物采样点)*0.7)
+train=a[select,]
+test=a[-select,]
+cc<-c()
+for(i in 3:50){
+  cvfit <- cv.glmnet(data.matrix(x), y,nfolds = i ,family = "binomial", type.measure = "class")
+  cvfit$lambda.min
+  summary(cvfit)
+  plot(cvfit)
+  coef(cvfit, s =cvfit$lambda.min)
+  ms<-assess.glmnet(cvfit,newx=as.matrix(test[,3:17]),newy=test[,2],family = "binomial")
+  cc<-c(cc,ms$mse)
+}
+plot(cc,type="b",ylab="MSE")
+which.min(cc)
+cvfit <- cv.glmnet(data.matrix(x), y,nfolds = 10,family = "binomial", type.measure = "class")
+cvfit$lambda.min
+summary(cvfit)
+plot(cvfit)
+coef(cvfit, s =cvfit$lambda.min)
+ms<-assess.glmnet(cvfit,newx=as.matrix(test[,3:17]),newy=test[,2],family = "binomial")
+b<-predict(cvfit,newx=as.matrix(test[,3:17]),type="class")
+
+library(Hmisc)
+somers2(as.numeric(b),test[,2])
+cnf <- confusion.glmnet(cvfit, newx=as.matrix(test[,3:17]),newy=test[,2])
+cnf
+prob<-predict(object=cvfit,newdata=test,type="response")
+pred2<-ifelse(prob>=0.5,1,0)
+pred22<-factor(pred2,levels=c(0,1),order=TRUE)
+f2<-table(test$是否ST,pred1)
+f2
+```
+
+You can also embed plots, for example:
+```{r}
+#高钾数据
+library(corrplot)
+getwd()
+setwd("C:\\Users\\HUAWEI\\Desktop")
+a<-read.csv("第四问高钾数据.csv",encoding = "UTF-8")
+x<-a[1:18,3:16]
+y<-a[1:18,2]
+plot(x,pch=20,col="red")
+corrplot(cor(x),method="square",title="各个指标之间的相关性分析",order="AOE",addCoef.col="black")
+library(glmnet)
+set.seed(205)
+select<-sample(1:nrow(a),length(a$X.U.FEFF.文物采样点)*0.7)
+train=a[select,]
+test=a[-select,]
+########
+cc<-c()
+for(i in 3:50){
+  cvfit <- cv.glmnet(data.matrix(x), y,nfolds = i ,family = "binomial", type.measure = "class")
+  cvfit$lambda.min
+  summary(cvfit)
+  #plot(cvfit)
+  coef(cvfit, s =cvfit$lambda.min)
+  ms<-assess.glmnet(cvfit,newx=as.matrix(test[,3:16]),newy=test[,2],family = "binomial")
+  cc<-c(cc,ms$mse)
+}
+#########################################################
+plot(cc,type="b",ylab="MSE")
+which.min(cc)
+cvfit <- cv.glmnet(data.matrix(x), y,nfolds = 4,family = "binomial", type.measure = "class")
+cvfit$lambda.min
+summary(cvfit)
+plot(cvfit)
+coef(cvfit, s =cvfit$lambda.min)
+ms<-assess.glmnet(cvfit,newx=as.matrix(test[,3:16]),newy=test[,2],family = "binomial")
+b<-predict(cvfit,newx=as.matrix(test[,3:16]),type="class")
+
+library(Hmisc)
+somers2(as.numeric(b),test[,2])
+cnf <- confusion.glmnet(cvfit, newx=as.matrix(test[,3:16]),newy=test[,2])
+cnf
+```
+```{r}
+#铅钡数据
+library(corrplot)
+getwd()
+setwd("C:\\Users\\HUAWEI\\Desktop")
+a<-read.csv("第四问铅钡数据.csv",encoding = "UTF-8")
+x<-a[1:18,3:16]
+y<-a[1:18,2]
+plot(x,pch=20,col="red")
+corrplot(cor(x),method="square",title="各个指标之间的相关性分析",order="AOE",addCoef.col="black")
+library(glmnet)
+set.seed(205)
+select<-sample(1:nrow(a),length(a$X.U.FEFF.文物采样点)*0.7)
+train=a[select,]
+test=a[-select,]
+########################################################
+cc<-c()
+for(i in 3:50){
+  cvfit <- cv.glmnet(data.matrix(x), y,nfolds = i ,family = "binomial", type.measure = "class")
+  cvfit$lambda.min
+  summary(cvfit)
+  #plot(cvfit)
+  coef(cvfit, s =cvfit$lambda.min)
+  ms<-assess.glmnet(cvfit,newx=as.matrix(test[,3:16]),newy=test[,2],family = "binomial")
+  cc<-c(cc,ms$mse)
+}
+#########################################################
+plot(cc,type="b",ylab="MSE")
+which.min(cc)
+cvfit <- cv.glmnet(data.matrix(x), y,nfolds = 6,family = "binomial", type.measure = "class")
+cvfit$lambda.min
+summary(cvfit)
+plot(cvfit)
+coef(cvfit, s =cvfit$lambda.min)
+b<-predict(cvfit,newx=as.matrix(test[,3:16]),type="class")
+library(Hmisc)
+somers2(as.numeric(b),test[,2])
+cnf <- confusion.glmnet(cvfit, newx=as.matrix(test[,3:16]),newy=test[,2])
+cnf
+```
+```{r}
+##################3
+library(lars)
+LAR<-lars(as.matrix(x),as.matrix(y),type="lasso")
+LAR
+plot(LAR)
+LAR$Cp[which.min(LAR$Cp)]
+LAR$beta
+coef<-coef.lars(LAR,mode="step",s=26)
+coef[coef!=0]
+################################################
+library(glmnet)
+set.seed(1)
+fit <- glmnet(x, y, alpha=1,family = 'binomial')
+fit_cv <- cv.glmnet(x, y, alpha=1, family = 'binomial', type.measure='auc')
+plot(fit_cv)
+get_coe <- function(the_fit,the_lamb){
+  Coefficients <- coef(the_fit, s = the_lamb)
+  Active.Index <- which(Coefficients != 0)
+  Active.Coefficients <- Coefficients[Active.Index]
+  re <- data.frame(rownames(Coefficients)[Active.Index],Active.Coefficients)
+  re <- data.table('var_names'=rownames(Coefficients)[Active.Index],'coef'=Active.Coefficients)
+  # 计算系数的指数次方，表示x每变动一个单位对y的影响倍数
+  re$expcoef <- exp(re$coef)
+  return(re[order(expcoef)])
+}
+get_coe(fit_cv,fit_cv$lambda.min)
+```
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
